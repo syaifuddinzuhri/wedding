@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   const btnOpen = document.querySelector(".btn-open");
   const openBox = document.querySelector(".open-box");
+  const audio = document.getElementById("audio");
   const invitationBox = document.querySelector(".invitation-box");
   // openBox.style.display = "none";
   // invitationBox.classList.add("show");
+  // AOS.init();
 
   btnOpen.addEventListener("click", function () {
     openBox.classList.add("hidden");
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       openBox.style.display = "none";
       invitationBox.classList.add("show");
       AOS.init();
+      audio.play();
     }, 500); // Match the duration of the CSS transition
   });
 
@@ -35,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
       (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
     );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-    console.log(formatTime(days));
     // Display the countdown
     document.getElementById("days").innerText = formatTime(days);
     document.getElementById("hours").innerText = formatTime(hours);
@@ -58,3 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return time < 10 ? `0${time}` : time;
   }
 });
+function copyText(value) {
+  navigator.clipboard.writeText(value);
+}
